@@ -44,7 +44,7 @@ npm start
 ## Status
 
 - [x] Backend route: climate + elevation lookup by lat/lng
-- [ ] Backend: soil pH/type estimate (ISRIC SoilGrids)
+- [x] Backend: soil pH/type estimate (ISRIC SoilGrids)
 - [ ] Backend: LLM reasoning route (structured data + user answers -> suggestions)
 - [ ] Mobile: pin-drop / location input screen
 - [ ] Mobile: follow-up questions form

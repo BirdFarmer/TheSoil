@@ -25,8 +25,23 @@ export interface ElevationResult {
   elevationMeters: number;
 }
 
+export interface SoilSummary {
+  source: "isric-soilgrids";
+  confidence: DataConfidence;
+  depth: "0-5cm";
+  /** null means SoilGrids has no data for this exact point (common near coasts/urban areas). */
+  phH2O: number | null;
+  sandPercent: number | null;
+  siltPercent: number | null;
+  clayPercent: number | null;
+  soilOrganicCarbonGPerKg: number | null;
+  available: boolean;
+  note?: string;
+}
+
 export interface EnvironmentData {
   coordinates: Coordinates;
   climate: ClimateSummary;
   elevation: ElevationResult;
+  soil: SoilSummary;
 }

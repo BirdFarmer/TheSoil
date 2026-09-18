@@ -1,6 +1,7 @@
 import { Router, type Request, type Response } from "express";
 import { fetchClimateSummary } from "../services/climateService";
 import { fetchElevation } from "../services/elevationService";
+import { fetchSoilSummary } from "../services/soilService";
 import type { Coordinates, EnvironmentData } from "../types";
 
 export const environmentRouter = Router();
@@ -25,12 +26,15 @@ environmentRouter.get("/environment", async (req: Request, res: Response) => {
   }
 
   try {
-    const [climate, elevation] = await Promise.all([
+    // fetchSoilSummary never throws — a slow/unavailable SoilGrids lookup
+    // degrades to available:false instead of failing the whole request.
+    const [climate, elevation, soil] = await Promise.all([
       fetchClimateSummary(coordinates),
       fetchElevation(coordinates),
+      fetchSoilSummary(coordinates),
     ]);
 
-    const environmentData: EnvironmentData = { coordinates, climate, elevation };
+    const environmentData: EnvironmentData = { coordinates, climate, elevation, soil };
     res.json(environmentData);
   } catch (error) {
     console.error("Failed to fetch environment data:", error);
