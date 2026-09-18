@@ -1,0 +1,21 @@
+.DS_Store
+*.log
+
+# dependencies
+node_modules/
+
+# env files (never commit secrets)
+.env
+.env.local
+!.env.example
+
+# build output
+dist/
+*.tsbuildinfo
+
+# Expo / React Native
+mobile/.expo/
+mobile/web-build/
+mobile/expo-env.d.ts
+/mobile/ios
+/mobile/android
